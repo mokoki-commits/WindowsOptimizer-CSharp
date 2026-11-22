@@ -18,18 +18,7 @@
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="20 0 0 0">
             <TextBlock Text="Параметры профиля" FontWeight="Bold" Margin="0 0 0 10"/>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Режим работы"/>
-                <ComboBox Grid.Column="1" SelectedItem="{Binding SelectedProfile.Mode}">
-                    <ComboBoxItem Content="Safe"/>
-                    <ComboBoxItem Content="Balanced"/>
-                    <ComboBoxItem Content="Strict"/>
-                </ComboBox>
-            </Grid>
+            
             <CheckBox Content="Registry Tweaks" IsChecked="{Binding SelectedProfile.RegistryTweaks}" Margin="0 10 0 0"/>
             <CheckBox Content="Services Manager" IsChecked="{Binding SelectedProfile.Services}" Margin="0 5 0 0"/>
             <CheckBox Content="Visual Effects" IsChecked="{Binding SelectedProfile.VisualEffects}" Margin="0 5 0 0"/>
@@ -45,7 +34,7 @@
             <ProgressBar Height="20" Margin="0 10 0 0" IsIndeterminate="True" Visibility="Collapsed"/>
             <TextBlock Text="{Binding ProgressText}" Margin="0 10 0 0" Foreground="Blue"/>
             <Button Content="Справка" Margin="0 5 0 0" Click="Help_Click"/>
-            <TextBlock Text="Автор-проектировщик: avk013 | Исполнитель: Cline mokoki | v1.0.7" Margin="0 20 0 0" Foreground="Gray" FontSize="10"/>
+            <TextBlock Text="Автор-проектировщик: avk013 | Исполнитель: Cline mokoki | v1.0.9" Margin="0 20 0 0" Foreground="Gray" FontSize="10"/>
         </StackPanel>
     </Grid>
 </Window>

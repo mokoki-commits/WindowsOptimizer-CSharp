@@ -6,10 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
-    <Version>1.0.7</Version>
-    <FileVersion>1.0.7.0</FileVersion>
-    <AssemblyVersion>1.0.7.0</AssemblyVersion>
-    <InformationalVersion>1.0.7+20261122</InformationalVersion>
+    <Version>1.0.9</Version>
+    <FileVersion>1.0.9.0</FileVersion>
+    <AssemblyVersion>1.0.9.0</AssemblyVersion>
+    <InformationalVersion>1.0.9+20261122</InformationalVersion>
     <Company>avk013</Company>
     <Copyright>Copyright (c) avk013. Project Architect: avk013. Implementation: Cline mokoki</Copyright>
     <PublishSingleFile>true</PublishSingleFile>

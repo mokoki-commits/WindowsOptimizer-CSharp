@@ -4,7 +4,8 @@ using WindowsOptimizer.Core.Models;
 namespace WindowsOptimizer.Core.Services;
 
 public interface ILogger
-{
+    bool IsEnabled { get; set; }
+
     void Info(string message);
     void Warn(string message);
     void Error(string message);
@@ -22,12 +23,14 @@ public class FileLogger : ILogger
         _logPath = Path.Combine(logDir, $"optimizer_{DateTime.Now:yyyyMMdd_HHmmss}.log");
     }
 
-    public void Info(string message) => Write("INFO", message);
-    public void Warn(string message) => Write("WARN", message);
-    public void Error(string message) => Write("ERROR", message);
+    public bool IsEnabled { get; set; } = true;
+    public void Info(string message) { if (IsEnabled) Write("INFO", message); }
+    public void Warn(string message) { if (IsEnabled) Write("WARN", message); }
+    public void Error(string message) { if (IsEnabled) Write("ERROR", message); }
 
     public void Log(TweakResult result)
     {
+        if (!IsEnabled) return;
         var line = $"{DateTime.Now:O} [{result.Category}/{result.Name}] Success:{result.Success} - {result.Message}";
         Write(result.Success ? "OK" : "FAIL", line);
     }

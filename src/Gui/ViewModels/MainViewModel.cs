@@ -41,22 +41,28 @@ public class MainViewModel : INotifyPropertyChanged
     public bool IsLoggingEnabled
     {
         get => _isLoggingEnabled;
-        set { _isLoggingEnabled = value; OnPropertyChanged(); }
+        set 
+        { 
+            _isLoggingEnabled = value; 
+            if (_logger != null) _logger.IsEnabled = value;
+            OnPropertyChanged(); 
+        }
     }
+
+    private readonly ILogger _logger;
+    private readonly OptimizerEngine _engine;
+    private readonly SafetyService _safety;
 
     public MainViewModel()
     {
-        var logger = new VersionedFileLogger("Logs");
-        _engine = new OptimizerEngine(logger, new BackupService(logger), new RegistryTweaksService(logger, WindowsInfoDetector.GetInfo()), new ServicesManager(logger), new StartupManager(logger), new VisualEffectsService(logger), new PowerPlanService(logger), new CleanupService(logger), new SafetyService());
+        _logger = new VersionedFileLogger("Logs");
+        _engine = new OptimizerEngine(_logger, new BackupService(_logger), new RegistryTweaksService(_logger, WindowsInfoDetector.GetInfo()), new ServicesManager(_logger), new StartupManager(_logger), new VisualEffectsService(_logger), new PowerPlanService(_logger), new CleanupService(_logger), new SafetyService());
         _safety = new SafetyService();
         _safety.OnProgress += msg => ProgressText = msg;
         foreach (var p in PresetProfiles.BuiltIn)
             Profiles.Add(p);
         SelectedProfile = Profiles[1];
     }
-
-    private readonly OptimizerEngine _engine;
-    private readonly SafetyService _safety;
 
     public void CreateProfile()
     {
