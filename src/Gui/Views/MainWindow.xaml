@@ -1,0 +1,50 @@
+<Window x:Class="WindowsOptimizer.Gui.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Windows Optimizer - Hybrid" Height="600" Width="900">
+    <Grid Margin="10" DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="Профили" FontWeight="Bold" Margin="0 0 0 10"/>
+            <ListBox ItemsSource="{Binding Profiles}" SelectedItem="{Binding SelectedProfile}" DisplayMemberPath="Name" Height="300"/>
+            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                <Button Content="Создать" Margin="0 0 5 0" Click="Create_Click"/>
+                <Button Content="Сохранить" Margin="0 0 5 0" Click="Save_Click"/>
+                <Button Content="Удалить" Click="Delete_Click"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="20 0 0 0">
+            <TextBlock Text="Параметры профиля" FontWeight="Bold" Margin="0 0 0 10"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Режим работы"/>
+                <ComboBox Grid.Column="1" SelectedItem="{Binding SelectedProfile.Mode}">
+                    <ComboBoxItem Content="Safe"/>
+                    <ComboBoxItem Content="Balanced"/>
+                    <ComboBoxItem Content="Strict"/>
+                </ComboBox>
+            </Grid>
+            <CheckBox Content="Registry Tweaks" IsChecked="{Binding SelectedProfile.RegistryTweaks}" Margin="0 10 0 0"/>
+            <CheckBox Content="Services Manager" IsChecked="{Binding SelectedProfile.Services}" Margin="0 5 0 0"/>
+            <CheckBox Content="Visual Effects" IsChecked="{Binding SelectedProfile.VisualEffects}" Margin="0 5 0 0"/>
+            <CheckBox Content="Power Plan" IsChecked="{Binding SelectedProfile.PowerPlan}" Margin="0 5 0 0"/>
+            <CheckBox Content="Cleanup" IsChecked="{Binding SelectedProfile.Cleanup}" Margin="0 5 0 0"/>
+            <CheckBox Content="Startup Manager" IsChecked="{Binding SelectedProfile.Startup}" Margin="0 5 0 0"/>
+            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                <TextBlock Text="PIN:" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding PinInput}" Width="100" Margin="5 0 0 0"/>
+                <Button Content="Запустить" Margin="5 0 0 0" Click="Run_Click"/>
+            </StackPanel>
+            <ProgressBar Height="20" Margin="0 10 0 0" IsIndeterminate="True" Visibility="Collapsed"/>
+            <TextBlock Text="{Binding ProgressText}" Margin="0 10 0 0" Foreground="Blue"/>
+            <Button Content="Справка" Margin="0 5 0 0" Click="Help_Click"/>
+            <TextBlock Text="Автор-проектировщик: avk013 | Исполнитель: Cline mokoki | v1.0.7" Margin="0 20 0 0" Foreground="Gray" FontSize="10"/>
+        </StackPanel>
+    </Grid>
+</Window>

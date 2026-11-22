@@ -1,0 +1,11 @@
+<Window x:Class="WindowsOptimizer.Gui.Views.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Справка - Windows Optimizer" Height="600" Width="700" WindowStartupLocation="CenterOwner">
+    <Grid Margin="15">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="HelpContent">
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

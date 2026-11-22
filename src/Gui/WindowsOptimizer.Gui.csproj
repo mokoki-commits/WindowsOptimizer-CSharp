@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <Version>1.0.7</Version>
+    <FileVersion>1.0.7.0</FileVersion>
+    <AssemblyVersion>1.0.7.0</AssemblyVersion>
+    <InformationalVersion>1.0.7+20261122</InformationalVersion>
+    <Company>avk013</Company>
+    <Copyright>Copyright (c) avk013. Project Architect: avk013. Implementation: Cline mokoki</Copyright>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>false</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <Authors>avk013 (Designed by); Cline mokoki (Developed by)</Authors>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\WindowsOptimizer.Core.csproj" />
+  </ItemGroup>
+</Project>
