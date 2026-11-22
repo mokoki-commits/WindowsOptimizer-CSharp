@@ -53,9 +53,15 @@ public class RegistryTweaksService : IRegistryTweaksService
             using var key = Registry.LocalMachine.CreateSubKey(subKey);
             if (key != null)
             {
+                var currentValue = key.GetValue(valueName)?.ToString();
+                if (currentValue?.ToString() == value.ToString())
+                {
+                    return new TweakResult { Success = true, Category = "Registry", Name = description, Message = "Already set" };
+                }
+
                 key.SetValue(valueName, value, RegistryValueKind.DWord);
-                _logger.Info($"Registry: {description} set");
-                return new TweakResult { Success = true, Category = "Registry", Name = description, Message = "Applied" };
+                _logger.Info($"Registry: {description} set (Old: {currentValue}, New: {value})");
+                return new TweakResult { Success = true, Category = "Registry", Name = description, Message = $"Changed (Old: {currentValue}, New: {value})", OldValue = currentValue, NewValue = value.ToString() };
             }
         }
         catch (Exception ex)

@@ -27,13 +27,16 @@ public class ServicesManager : IServicesManager
             try
             {
                 using var service = new ServiceController(svc.Name);
-                if (service.Status != ServiceControllerStatus.Stopped)
+                if (service.Status == ServiceControllerStatus.Stopped)
                 {
-                    service.Stop();
-                    service.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(10));
+                    results.Add(new TweakResult { Success = true, Category = "Services", Name = svc.Name, Message = "Already stopped" });
+                    continue;
                 }
-                // Note: permanent disable requires SCM changes, requires admin
-                results.Add(new TweakResult { Success = true, Category = "Services", Name = svc.Name, Message = $"Stopped {svc.Name}" });
+                
+                service.Stop();
+                service.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(10));
+                
+                results.Add(new TweakResult { Success = true, Category = "Services", Name = svc.Name, Message = "Stopped" });
                 _logger.Info($"Service {svc.Name} stopped");
             }
             catch (Exception ex)

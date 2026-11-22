@@ -15,6 +15,7 @@ public class MainViewModel : INotifyPropertyChanged
     private ProfileTemplate _selectedProfile;
     private string _progressText = "Готов";
     private string _pinInput = "";
+    private bool _isLoggingEnabled = true;
 
     public ObservableCollection<ProfileTemplate> Profiles { get; } = new();
     public ObservableCollection<ProfileTemplate> UserProfiles { get; } = new();
@@ -35,6 +36,12 @@ public class MainViewModel : INotifyPropertyChanged
     {
         get => _pinInput;
         set { _pinInput = value; OnPropertyChanged(); }
+    }
+
+    public bool IsLoggingEnabled
+    {
+        get => _isLoggingEnabled;
+        set { _isLoggingEnabled = value; OnPropertyChanged(); }
     }
 
     public MainViewModel()
