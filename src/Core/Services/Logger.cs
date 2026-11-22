@@ -4,6 +4,7 @@ using WindowsOptimizer.Core.Models;
 namespace WindowsOptimizer.Core.Services;
 
 public interface ILogger
+{
     bool IsEnabled { get; set; }
 
     void Info(string message);
